@@ -33,3 +33,17 @@
     state: started
     name: node_exporter
     enabled: yes
+
+- name: Update file prometheus.yml
+  ansible.builtin.blockinfile:
+    path: /etc/prometheus/prometheus.yml
+    block: |
+      - job_name: 'node_export'
+          static_configs:
+            - targets: ["localhost:9100"]
+
+- name: Fix indentation
+  ansible.builtin.replace:
+    path: /etc/prometheus/prometheus.yml
+    regexp: "^(- job_name: 'node_export')"
+    replace: '  \1'

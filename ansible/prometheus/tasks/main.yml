@@ -60,4 +60,4 @@
   retries: 2
   delay: 10
   register: result
-  until: resuls is succeeded
+  until: result is succeeded
